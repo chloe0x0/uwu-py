@@ -7,9 +7,8 @@ A text uwu-ifier in Python
 (function) uwu: (s: str, S: float = 0.1, F: float = 0.1) -> str
 ```
 S represents the probability of stuttering in a word
-F represents the probability of adding a face after a word
+F represents the probability of adding a face after a word (such as uwu)
 these parameters need not be specified as they are given default values
-(such as uwu)
 
 ```python
 from uwu import *
