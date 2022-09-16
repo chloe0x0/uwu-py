@@ -1,23 +1,12 @@
-import random
+import random, re
 
-from scipy.misc import face;uwuify = lambda s : ''.join(map(lambda c : { 'l': 'w', 'r': 'w' }[c.lower()] if c.lower() in ['l','r'] else c, s))
-
-import re
-
-faces = [
-    'uwu',
-    'owo',
-    '^w^',
-    'XwX',
-]
-
-S, F = 0.1, 0.1
+faces = list(set(open("./src/faces.txt", encoding='utf-8').read().split()))
 
 def stutter(s: str) -> str:
-    ix = random.randint(1, len(s) - 1)
+    ix = random.randint(1, len(s))
     return s[:ix] + '-' + s[ix:]
 
-def uwu(s: str) -> str:
+def uwu(s: str, S: float = 0.1, F: float = 0.1) -> str:
     '''
         1: l | r => w
         2: th => d
@@ -29,8 +18,6 @@ def uwu(s: str) -> str:
     # add stutter
     x = map(lambda s: stutter(s) if random.random() < S else s, x.split())
     # add faces
-    x = map(lambda s: s+' '+random.choice(faces) if random.random() < F else s, list(x))
+    x = map(lambda s: s + ' ' + random.choice(faces) if random.random() < F else s, list(x))
 
     return ' '.join(x)
-
-print(uwu(input()))
